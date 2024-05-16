@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SGPA Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>SGPA Calculator</h1>
+    <p>Developed by Mahesh</p>
+    <p>Visit my website: <a href="https://mahesh062.odoo.com/" target="_blank">Mahesh's Website</a></p>
+    <div class="input-group">
+      <label for="java">Java:</label>
+      <input type="number" id="java" placeholder="Marks (0-100)" min="0" max="100" required>
+    </div>
+    <div class="input-group">
+      <label for="macm">MACM:</label>
+      <input type="number" id="macm" placeholder="Marks (0-100)" min="0" max="100" required>
+    </div>
+    <div class="input-group">
+      <label for="dms">DMS:</label>
+      <input type="number" id="dms" placeholder="Marks (0-100)" min="0" max="100" required>
+    </div>
+    <div class="input-group">
+      <label for="ls">LS:</label>
+      <input type="number" id="ls" placeholder="Marks (0-100)" min="0" max="100" required>
+    </div>
+    <div class="input-group">
+      <label for="dl">DL:</label>
+      <input type="number" id="dl" placeholder="Marks (0-100)" min="0" max="100" required>
+    </div>
+    <div class="input-group">
+      <label for="mem">MEM:</label>
+      <input type="number" id="mem" placeholder="Marks (0-100)" min="0" max="100" required>
+    </div>
+    <div class="input-group">
+      <button onclick="calculateSGPA()">Calculate SGPA</button>
+    </div>
+    <div id="result"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
