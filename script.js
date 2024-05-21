@@ -18,7 +18,7 @@ function calculateSGPA() {
   const dmsCredit = 4;
   const lsCredit = 1;
   const dlCredit = 4;
-  const memCredit = 3;
+  const memCredit = 5;
 
   const subjects = ['Java', 'MACM', 'DMS', 'LS', 'DL', 'MEM'];
   const marks = [javaMarks, macmMarks, dmsMarks, lsMarks, dlMarks, memMarks];
