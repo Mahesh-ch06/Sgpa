@@ -56,9 +56,9 @@ function calculateGrade(marks) {
   } else if (marks >= 70) {
     return 8;
   } else if (marks >= 60) {
-    return 7;
+    return 6;
   } else if (marks >= 50) {
-    return 5;
+    return 4;
   } else {
     return 0; // Fail grade
   }
