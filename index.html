@@ -4,43 +4,246 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SGPA Calculator</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .subject {
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+    .subject h2 {
+      margin: 0 0 10px;
+      color: #333;
+    }
+    .subject .input-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .input-group label {
+      width: 180px;
+      font-weight: bold;
+    }
+    .input-group input {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 15px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #result {
+      margin-top: 20px;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+    table th {
+      background-color: #f4f4f4;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <h1>SGPA Calculator</h1>
-    <p>Developed by Mahesh</p>
-    <p>Visit my website: <a href="https://mahesh062.odoo.com/" target="_blank">Mahesh's Website</a></p>
-    <div class="input-group">
-      <label for="java">Java:</label>
-      <input type="number" id="java" placeholder="Marks (0-100)" min="0" max="100" required>
+    <form id="sgpaForm">
+      <!-- STAT -->
+      <div class="subject" id="stat">
+        <h2>STAT</h2>
+        <div class="input-group">
+          <label for="stat_mid">Mid (20)</label>
+          <input type="number" id="stat_mid" max="20" min="0" required>
+        </div>
+        <div class="input-group">
+          <label for="stat_project">Project (20)</label>
+          <input type="number" id="stat_project" max="20" min="0" required>
+        </div>
+        <div class="input-group">
+          <label for="stat_lab">Lab (20)</label>
+          <input type="number" id="stat_lab" max="20" min="0" required>
+        </div>
+        <div class="input-group">
+          <label for="stat_sem">Semester (40)</label>
+          <input type="number" id="stat_sem" max="40" min="0" required>
+        </div>
+      </div>
+
+      <!-- Operating Systems -->
+      <div class="subject" id="os">
+        <h2>Operating Systems</h2>
+        <div class="input-group">
+          <label for="os_mid">Mid (20)</label>
+          <input type="number" id="os_mid" max="20" min="0" required>
+        </div>
+        <div class="input-group">
+          <label for="os_lab">Lab (20)</label>
+          <input type="number" id="os_lab" max="20" min="0" required>
+        </div>
+        <div class="input-group">
+          <label for="os_labexam">Lab Exam (10)</label>
+          <input type="number" id="os_labexam" max="10" min="0" required>
+        </div>
+        <div class="input-group">
+          <label for="os_certificate">Certificate (10)</label>
+          <input type="number" id="os_certificate" max="10" min="0" required>
+        </div>
+        <div class="input-group">
+          <label for="os_sem">Semester (40)</label>
+          <input type="number" id="os_sem" max="40" min="0" required>
+        </div>
+      </div>
+
+      <!-- Computer Networks -->
+      <div class="subject" id="cn">
+        <h2>Computer Networks</h2>
+        <div class="input-group">
+          <label for="cn_certificate">Certificate (60)</label>
+          <input type="number" id="cn_certificate" max="60" min="0" required>
+        </div>
+        <div class="input-group">
+          <label for="cn_lab">Lab (40)</label>
+          <input type="number" id="cn_lab" max="40" min="0" required>
+        </div>
+      </div>
+
+      <!-- AI & ML -->
+      <div class="subject" id="aiml">
+        <h2>AI & ML</h2>
+        <div class="input-group">
+          <label for="aiml_mid">Mid (20)</label>
+          <input type="number" id="aiml_mid" max="20" min="0" required>
+        </div>
+        <div class="input-group">
+          <label for="aiml_labexam">Lab Exam (20)</label>
+          <input type="number" id="aiml_labexam" max="20" min="0" required>
+        </div>
+        <div class="input-group">
+          <label for="aiml_certificate">Certificate (10)</label>
+          <input type="number" id="aiml_certificate" max="10" min="0" required>
+        </div>
+        <div class="input-group">
+          <label for="aiml_lab">Lab (10)</label>
+          <input type="number" id="aiml_lab" max="10" min="0" required>
+        </div>
+      <div class="input-group">
+        <label for="aiml_sem">Semester (40)</label>
+        <input type="number" id="aiml_sem" max="40" min="0" required>
+      </div>
     </div>
-    <div class="input-group">
-      <label for="macm">MACM:</label>
-      <input type="number" id="macm" placeholder="Marks (0-100)" min="0" max="100" required>
+
+      <!-- Data Structures -->
+      <div class="subject" id="dsa">
+        <h2>Data Structures (DSA)</h2>
+        <div class="input-group">
+          <label for="dsa_mid">Mid (20)</label>
+          <input type="number" id="dsa_mid" max="20" min="0" required>
+        </div>
+        <div class="input-group">
+          <label for="dsa_lab">Lab (30)</label>
+          <input type="number" id="dsa_lab" max="30" min="0" required>
+        </div>
+        <div class="input-group">
+          <label for="dsa_tutorial">Tutorial (10)</label>
+          <input type="number" id="dsa_tutorial" max="10" min="0" required>
+        </div>
+        <div class="input-group">
+          <label for="dsa_hackathon">Hackathon (10)</label>
+          <input type="number" id="dsa_hackathon" max="10" min="0" required>
+        </div>
+      <div class="input-group">
+        <label for="dsa_sem">Semester (40)</label>
+        <input type="number" id="dsa_sem" max="40" min="0" required>
+      </div>
     </div>
-    <div class="input-group">
-      <label for="dms">DMS:</label>
-      <input type="number" id="dms" placeholder="Marks (0-100)" min="0" max="100" required>
-    </div>
-    <div class="input-group">
-      <label for="ls">LS:</label>
-      <input type="number" id="ls" placeholder="Marks (0-100)" min="0" max="100" required>
-    </div>
-    <div class="input-group">
-      <label for="dl">DL:</label>
-      <input type="number" id="dl" placeholder="Marks (0-100)" min="0" max="100" required>
-    </div>
-    <div class="input-group">
-      <label for="mem">MEM:</label>
-      <input type="number" id="mem" placeholder="Marks (0-100)" min="0" max="100" required>
-    </div>
-    <div class="input-group">
-      <button onclick="calculateSGPA()">Calculate SGPA</button>
-    </div>
+
+      <button type="button" onclick="calculateSGPA()">Calculate SGPA</button>
+    </form>
     <div id="result"></div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    function calculateSGPA() {
+      const subjects = [
+        { name: "STAT", id: "stat", total: 100, credits: 4 },
+        { name: "Operating Systems", id: "os", total: 100, credits: 4 },
+        { name: "Computer Networks", id: "cn", total: 100, credits: 4 },
+        { name: "AI & ML", id: "aiml", total: 100, credits: 4 },
+        { name: "DSA", id: "dsa", total: 100, credits: 7 },
+      ];
+
+      let totalCredits = 0;
+      let totalSGPA = 0;
+      let report = "<h2>Semester Grade Report</h2><table><thead><tr><th>Subject</th><th>Marks</th><th>Grade</th><th>Credits</th></tr></thead><tbody>";
+
+      subjects.forEach(subject => {
+        const inputs = Array.from(document.querySelectorAll(`#${subject.id} input`));
+        const marks = inputs.reduce((sum, input) => sum + parseFloat(input.value || 0), 0);
+        const percentage = (marks / subject.total) * 100;
+        const grade = calculateGrade(percentage);
+
+        totalCredits += subject.credits;
+        totalSGPA += grade * subject.credits;
+
+        report += `<tr><td>${subject.name}</td><td>${marks}</td><td>${grade}</td><td>${subject.credits}</td></tr>`;
+      });
+
+      totalSGPA = (totalSGPA / totalCredits).toFixed(2);
+      report += `</tbody></table><p><strong>Total SGPA:</strong> ${totalSGPA}</p>`;
+
+      document.getElementById("result").innerHTML = report;
+    }
+
+    function calculateGrade(percentage) {
+      if (percentage >= 80) return 10;
+      if (percentage >= 70) return 8;
+      if (percentage >= 50) return 6;
+      if (percentage >= 40) return 5;
+      return 0;
+    }
+  </script>
 </body>
 </html>
