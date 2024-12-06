@@ -117,14 +117,47 @@
       background-color: #f0f0f0;
       font-weight: 600;
     }
+    .loader {
+      display: block;
+      width: 84px;
+      height: 84px;
+      position: relative;
+      margin: 100px auto; /* Center the loader */
+    }
+    .loader:before,
+    .loader:after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #333; /* Change to your preferred color */
+      transform: translate(-50%, -100%) scale(0);
+      animation: push_401 2s infinite linear;
+    }
+    .loader:after {
+      animation-delay: 1s;
+    }
+    @keyframes push_401 {
+      0%,
+      50% {
+        transform: translate(-50%, 0%) scale(1);
+      }
+      100% {
+        transform: translate(-50%, -100%) scale(0);
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>SGPA Calculator</h1>
-    <form id="sgpaForm">
-      <!-- STAT -->
-       <!-- STAT -->
+  <div class="loader"></div>
+  <div id="mainContent" style="display: none;">
+    <div class="container">
+      <h1>SGPA Calculator</h1>
+      <form id="sgpaForm">
+        <!-- STAT -->
       <div class="subject" id="stat">
         <h2>STAT</h2>
         <div class="input-group">
@@ -236,8 +269,14 @@
     </form>
     <div id="result"></div>
   </div>
-
   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      setTimeout(() => {
+        document.querySelector(".loader").style.display = "none"; // Hide the loader
+        document.getElementById("mainContent").style.display = "block"; // Show main content
+      }, 3000); // 3 seconds delay
+    });
+
     function calculateSGPA() {
       const subjects = [
         { name: "STAT", id: "stat", total: 100, credits: 4 },
@@ -246,21 +285,17 @@
         { name: "AI & ML", id: "aiml", total: 100, credits: 4 },
         { name: "DSA", id: "dsa", total: 100, credits: 7 },
       ];
-
       let totalCredits = 0;
       let totalSGPA = 0;
       let report = `<h2>Your SGPA</h2><table>
         <thead><tr><th>Subject</th><th>Marks</th><th>Grade</th><th>Credits</th></tr></thead><tbody>`;
-
       subjects.forEach(subject => {
         const inputs = Array.from(document.querySelectorAll(`#${subject.id} input`));
         const marks = inputs.reduce((sum, input) => sum + parseFloat(input.value || 0), 0);
         const percentage = (marks / subject.total) * 100;
         const grade = calculateGrade(percentage);
-
         totalCredits += subject.credits;
         totalSGPA += grade * subject.credits;
-
         report += `<tr>
           <td>${subject.name}</td>
           <td>${marks}</td>
@@ -268,10 +303,8 @@
           <td>${subject.credits}</td>
         </tr>`;
       });
-
       totalSGPA = (totalSGPA / totalCredits).toFixed(2);
       report += `</tbody></table><p><strong>SGPA:</strong> ${totalSGPA}</p>`;
-
       document.getElementById("result").innerHTML = report;
     }
 
